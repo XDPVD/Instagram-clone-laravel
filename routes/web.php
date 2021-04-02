@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 #Importación del controlador
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Auth::routes();
 
 #Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 
+Route::get('/p/create',[PostsController::class,'create'])->name('post.create');
+
+Route::post('/p',[PostsController::class,'store'])->name('posts.store');
 
 #Enrutando profile/user
 Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');
