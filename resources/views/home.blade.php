@@ -22,13 +22,13 @@
               </div>
             </div>
             <div class="pt-4 font-weight-bold">
-                freeCodeCamp.org
+                {{ $user->profile->title }}
             </div>
             <div>
-                We're a global community of millions of people learning to code together. We're an open source, donor-supported, 501(c)(3) nonprofit.
+                {{ $user->profile->description }} 
             </div>
             <div>
-                <a href="#">www.freecodecamp.org</a>
+                <a href="#">{{ $user->profile->url }}</a>
             </div>
             
        </div>

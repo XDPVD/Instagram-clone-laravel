@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+#Importación del controlador
+use App\Http\Controllers\ProfilesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +24,8 @@ Auth::routes();
 
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+#Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 
 
+#Enrutando profile/user
+Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');
