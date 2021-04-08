@@ -4,11 +4,14 @@
 <div class="container">
    <div class="row">
        <div class="col-3 p-5">
-           <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQGLKj3JHcof0w/company-logo_200_200/0/1589990867649?e=2159024400&v=beta&t=V8puy6s_dYMSAsGHDbhTWfKdLkqoQD5NBhIv3kkmJMQ" class="rounded-circle" alt="">
+           <img class="rounded-circle w-100" src="{{ $user->profile->profileImage() }}" alt="">
        </div>
        <div class = "col-9 pt-5">
            <div class="d-flex justify-content-between align-items-baseline">
-               <h1>{{ $user->username }}</h1>
+							<div class="d-flex align-items-center pb-3">
+               	<div class="h4">{{ $user->username }}</div>
+				<follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+							</div>
            @can('update',$user->profile)
                <a href="/p/create">Add new post</a>
            @endcan
@@ -33,8 +36,7 @@
             <div>
                 {{ $user->profile->description }} 
             </div>
-            <div>
-                <a href="#">{{ $user->profile->url }}</a>
+            <div> <a href="#">{{ $user->profile->url }}</a>
             </div>
             
        </div>

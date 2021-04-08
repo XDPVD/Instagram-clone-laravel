@@ -15,11 +15,11 @@ class ProfilesController extends Controller
         #$user = User::findOrFail($user);
         #var_dump($user);
         
-        return view('profiles.index',
-            [
-                'user' => $user,
-          ]
-        );
+		$follows= (auth()->user())? auth()->user()->following->contains($user->id): false;
+
+//		dd($follows);
+
+        return view('profiles.index',compact('user','follows'));
     }
 
     public function edit(User $user)
@@ -40,18 +40,19 @@ class ProfilesController extends Controller
             'image' => '',
         ]);
 
-
         if(request('image')){
 
             $imagePath = request('image')->store('profile','public');
 
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000,1000);
             $image->save();
+
+            $imageArray = ['image' => $imagePath];
+
         }
-        dd($data);
         auth()->user()->profile()->update(array_merge(
             $data,
-            ['image' => $image],
+						$imageArray?? [],
         ));
 
         return redirect("/profile/{$user->id}");

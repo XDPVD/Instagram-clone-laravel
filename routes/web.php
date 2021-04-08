@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 #Importación del controlador
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\FollowsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-#Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-#Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+Route::post('follow/{user}', [FollowsController::class,'store'] );
 
 Route::get('/p/create',[PostsController::class,'create'])->name('post.create');
 
