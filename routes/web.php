@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\FollowsController;
+use App\Mail\NewUserWelcomeMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,12 @@ use App\Http\Controllers\FollowsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+
+Route::get('/email',function(){
+	return new NewUserWelcomeMail();
+});
 
 Route::post('follow/{user}', [FollowsController::class,'store'] );
 
@@ -31,6 +33,8 @@ Route::get('/p/create',[PostsController::class,'create'])->name('post.create');
 Route::post('/p',[PostsController::class,'store'])->name('posts.store');
 
 Route::get('/p/{post}',[PostsController::class,'show']);
+
+Route::get('/', [PostsController::class,'index'])->name('posts.index');
 
 #Enrutando profile/user
 Route::get('/profile/{user}', [ProfilesController::class,'index'])->name('profile.show');

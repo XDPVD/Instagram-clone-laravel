@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Mail\NewUserWelcomeMail;
+use Illuminate\Support\Facades\Mail;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -51,6 +54,8 @@ class User extends Authenticatable
                 $user->profile()->create([
                     'title' => $user->username,
                 ]);
+
+				Mail::to($user->email)->send(new NewUserWelcomeMail());
             }
         );
     }

@@ -21,13 +21,13 @@
            @endcan
             <div class="d-flex">
               <div class="pr-5">
-                  <strong>{{ $user->posts->count() }}</strong> posts
+                  <strong>{{ $postCount }}</strong> posts
               </div>
               <div class="pr-5">
-                  <strong>23k</strong> followers
+                  <strong>{{ $followersCount }}</strong> followers
               </div>
               <div class="pr-5">
-                  <strong>212</strong> following 
+                  <strong>{{ $followingCount }}</strong> following 
               </div>
             </div>
             <div class="pt-4 font-weight-bold">
